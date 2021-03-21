@@ -1,2 +1,13 @@
-<app-produto> </app-produto>
+
+<mat-toolbar class="navBar" id="title" color="primary">
+	<span style="cursor:pointer"[routerLink]="['/']">Loja</span>
+    <div class="flexSpacer"></div>
+    <span  [routerLink]="['/carrinho']">Carrinho</span>
+</mat-toolbar>
+<div id="route">
 <router-outlet></router-outlet>
+</div>
+<mat-toolbar  color="primary">
+	<span>Redes Sociais</span>
+</mat-toolbar>
+

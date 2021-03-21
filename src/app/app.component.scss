@@ -1,0 +1,17 @@
+.navBar{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+}
+.flexSpacer{
+    flex-grow: 1;
+}
+
+#route{
+	flex: 1 0 auto;
+}
+
+span{
+	cursor:pointer;
+}

@@ -16,7 +16,15 @@ export class ProdutoComponent implements OnInit {
   }
 
   addProduto(produto){
-    console.log('produto selecionado', produto);
+    this.productService.addInBasket(produto);
+    if (!localStorage[produto.name]) {
+      localStorage[produto.name] = JSON.stringify({qtd: 1, ...produto});
+  }else{
+    const p =JSON.parse(localStorage[produto.name])
+    p.qtd++;
+    localStorage[produto.name] = JSON.stringify(p);
+    console.log('lS',localStorage[produto.name] );
+  }
   }
 
 }
