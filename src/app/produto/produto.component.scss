@@ -6,3 +6,34 @@
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
+.tituloProduto{
+  font-family: Roboto,sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #444;
+}
+.preco{
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffaf00;
+}
+.card {
+  width: 200px;
+  height: 350px;
+  background: #f5f5f5;
+  margin: 1.5%;
+  padding: 0px;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img{
+  width: 200px;
+  height: 215px;
+}
