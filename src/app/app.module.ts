@@ -45,18 +45,25 @@ import { CestaComponent } from './pages/cesta/cesta.component';
 import { ItemCestaComponent } from './item-cesta/item-cesta.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { IdentificacaoClienteComponent } from './pages/identificacao-cliente/identificacao-cliente.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PedidoComponent } from './pages/pedido/pedido.component';
 @NgModule({
   declarations: [
     AppComponent,
     ProdutoComponent,
     HomeComponent,
     CestaComponent,
-    ItemCestaComponent
+    ItemCestaComponent,
+    IdentificacaoClienteComponent,
+    PedidoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule, 
+    ReactiveFormsModule,
     NoopAnimationsModule,
     MatCardModule,
   MatButtonModule,
