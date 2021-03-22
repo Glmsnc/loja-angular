@@ -1,1 +1,33 @@
-<p>pedido works!</p>
+<h2>Obrigado por comprar com a gente {{name}}, aqui segue um resumo do pedido No{{number}}</h2>
+<div class="clienteDados">
+    <span>Dados do comprador</span>
+    <span>Nome: {{name}}</span>
+    <span>Telefone: {{tel}}</span>
+    <span>E-mail: {{email}}</span>
+</div>
+<h4 style="text-align: center;">Resumo do pedido</h4>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z6">
+
+    <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef> Produto </th>
+        <td mat-cell *matCellDef="let element">  <img mat-card-image  class="img" [src]="element.url" ></td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element"> <span>{{element.name}} </span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="qtd">
+    <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+    <td mat-cell *matCellDef="let element">{{element.qtd}}
+    </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Preço </th>
+        <td mat-cell *matCellDef="let element"> R$ {{element.qtd * element.price}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
