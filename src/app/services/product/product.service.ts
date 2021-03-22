@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -7,16 +7,56 @@ import { Product } from './product';
 })
 export class ProductService {
 
+  private stateProduct$ = new BehaviorSubject<any>(null);
     private subject = new Subject<any>();
 
+    state$: Observable<any> = this.stateProduct$.pipe(
+    );
   products :Array<Product> = [{
-    name: "Cadeira teste",
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
+    name: "Cadeira 1",
     desc:"teste",
-    price:"R$1000",
+    price: 1000,
   },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
     name: "Cadeira 2",
     desc:"teste",
-    price:"R$1000",
+    price: 1000,
+  },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
+    name: "Cadeira 3",
+    desc:"teste",
+    price: 1000,
+  },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
+    name: "Cadeira 4",
+    desc:"teste",
+    price: 1000,
+  },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
+    name: "Cadeira 5",
+    desc:"teste",
+    price: 1000,
+  },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
+    name: "Cadeira 6",
+    desc:"teste",
+    price: 1000,
+  },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
+    name: "Cadeira 7",
+    desc:"teste",
+    price: 1000,
+  },{
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/1539027/7/1539027784_1GG.jpg",
+    name: "Maquina de lavar",
+    desc:"teste",
+    price: 1000,},
+    {
+    url:"https://images-americanas.b2w.io/produtos/01/00/img/2031917/0/2031917006_1GG.jpg",
+    name: "TV",
+    desc:"TV 55",
+    price: 4000,
   },]
   constructor() {}
   

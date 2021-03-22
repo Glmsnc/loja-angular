@@ -43,6 +43,9 @@ import {
 import { HomeComponent } from './pages/home/home.component';
 import { CestaComponent } from './pages/cesta/cesta.component';
 import { ItemCestaComponent } from './item-cesta/item-cesta.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +88,8 @@ import { ItemCestaComponent } from './item-cesta/item-cesta.component';
   MatListModule,
   MatToolbarModule,
   MatSlideToggleModule,
+  NgbModule,
+  IvyCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

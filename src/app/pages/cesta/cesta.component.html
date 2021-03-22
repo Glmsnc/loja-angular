@@ -1,1 +1,54 @@
-<p>cesta works!</p>
+<h1 style="text-align: center;">Carrinho</h1>
+<div class="containerCesta">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z6">
+
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> Produto </th>
+            <td mat-cell *matCellDef="let element">  <img mat-card-image  class="img" [src]="element.url" ></td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element"> <span>{{element.name}} </span></td>
+        </ng-container>
+    
+        <ng-container matColumnDef="qtd">
+        <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="value-button" id="decrease" (click)="subProduto(element)" >-</div>
+            <input type="number" id="number" [value]="element.qtd" />
+            <div class="value-button" id="increase" (click)="addProduto(element)">+</div>
+        </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Preço </th>
+            <td mat-cell *matCellDef="let element"> R$ {{element.qtd * element.price}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+
+
+  <mat-card  class="card">
+      
+    <mat-divider></mat-divider>
+    <mat-card-header>
+        <h3 class="summary-title">Resumo</h3>
+
+    </mat-card-header>
+    <mat-card-content>
+      <span >{{ qtd }} produtos produtos</span>
+    </mat-card-content>
+   
+    <mat-divider></mat-divider>
+    <span> Total: R${{ totalPreco }}</span>
+    <mat-divider></mat-divider>
+    <div class="flexSpacer"></div>
+    <mat-card-actions>
+      <button mat-button>Continuar</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

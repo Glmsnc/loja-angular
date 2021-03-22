@@ -1,6 +1,20 @@
-<app-produto> </app-produto>
-<mat-carousel>
-    <mat-carousel-slide>
-      ...
-    </mat-carousel-slide>
-  </mat-carousel>
+
+<div>
+    <carousel style="width: 50%;" autoplay="true" autoplayInterval="2000" dots=true cellsToShow=1 loop="false">
+        
+      
+        <div class="carousel-cell">
+            <img src="https://images-americanas.b2w.io/spacey/acom/2021/03/19/Destaque_HOME_CONECTA-17_03_DESK.png">
+        </div>
+        <div class="carousel-cell">
+            <img src="https://images-americanas.b2w.io/spacey/acom/2021/03/19/HOMEINTERNA-KVPASCOA-DESK.png">
+        </div>
+        <div class="carousel-cell">
+            <img src="https://images-americanas.b2w.io/spacey/acom/2021/03/19/DESK-PROMOCIONAL-IPHONE19.03_2.png">
+        </div>
+    </carousel>
+    <div class="container" >
+        
+    <app-produto *ngFor="let product of products" class="cardProduto" [product]="product"> </app-produto>
+    </div>
+</div>
