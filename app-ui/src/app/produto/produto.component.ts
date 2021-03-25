@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../services/product/product';
+import { ProductsInBasket } from '../services/product/basket';
 import { ProductService } from '../services/product/product.service';
 
 @Component({
@@ -9,36 +9,37 @@ import { ProductService } from '../services/product/product.service';
 })
 export class ProdutoComponent implements OnInit {
   @Input() product: any;
-  products: Array<Product>;
+  products: Array<ProductsInBasket> = new Array<ProductsInBasket>();
   constructor(private productService: ProductService, ) { }
   
   ngOnInit() {
-    console.log('product', this.product)
-    this.products = this.productService.getAll();
+    this.productService.listBasket().subscribe(
+      result =>{
+        console.log('init')
+        this.products = result;
+      },
+      error =>{
+        console.error(error);
+      }
+    );
   }
 
   addProduto(produto){
-    this.productService.addInBasket(produto);
-    const stored = JSON.parse(sessionStorage.getItem('lista'));
-    let lista: Array<any> =[];
-    
-    if(stored){
-      if(stored.some(el => el.name === produto.name)){
-        stored.map(item=>{
-          if(item.name === produto.name) item.qtd++;
-          return item;
-        })
-      }else{
-        lista.push({qtd: 1, ...produto});
-      }
-      
-      lista = [...lista, ...stored];
+    console.log('initPr', this.products)
+   const tempArray = this.products
+    if(tempArray.some(el => el.name === produto.name)){
+      this.products.map(item=>{
+        if(item.name === produto.name) item.qtd++;
+        return item;
+      })
     }else{
-      lista.push({qtd: 1, ...produto}); 
+      console.log('aqui?')
+      this.products.push({qtd: 1, ...produto});
     }
     
-    sessionStorage.setItem('lista', JSON.stringify(lista));
+    this.productService.addInBasket(this.products).subscribe();
    
+    console.log('FimProducts',this.products)
   }
   
 

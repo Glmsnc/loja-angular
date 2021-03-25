@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ProductsInBasket } from './basket';
 import { Product } from './product';
 
 @Injectable({
@@ -10,66 +13,37 @@ export class ProductService {
   private stateProduct$ = new BehaviorSubject<any>(null);
     private subject = new Subject<any>();
 
+    
     state$: Observable<any> = this.stateProduct$.pipe(
     );
-  products :Array<Product> = [{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 1",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 2",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 3",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 4",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 5",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 6",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1332853/5/1332853528_1GG.jpg",
-    name: "Cadeira 7",
-    desc:"teste",
-    price: 1000,
-  },{
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/1539027/7/1539027784_1GG.jpg",
-    name: "Maquina de lavar",
-    desc:"teste",
-    price: 1000,},
-    {
-    url:"https://images-americanas.b2w.io/produtos/01/00/img/2031917/0/2031917006_1GG.jpg",
-    name: "TV",
-    desc:"TV 55",
-    price: 4000,
-  },]
-  constructor() {}
+  products :Array<Product> = new Array<Product>();
+  constructor(private http: HttpClient,  @Inject('BASE_URL') private baseUrl: string) {}
   
   
-  getAll(): Array<Product> {
-      return this.products;
-  }
+  getProducts(): Observable<any> {
+    const configURL = this.baseUrl + '/product';
+    return this.http.get<Product[]>(configURL);
 
-  listBasket(): Observable<Product>{
-    return this.subject.asObservable();
   }
-  addInBasket(product: Product){
-    this.subject.next(product);
+ 
+  listBasket(): Observable<ProductsInBasket[]>{
+    const uuid = sessionStorage.getItem('uuid');
+    const configURL = this.baseUrl + `/product/${uuid}`;
+    
+    return this.http.get<ProductsInBasket[]>(configURL).pipe( map(result=> {
+      this.products = result;
+      return result;
+    }));
+  }
+  addInBasket(products: ProductsInBasket[]):Observable<any>{
+    
+    const configURL = this.baseUrl + '/product';
+   return this.http.post<string>(configURL, products).pipe(
+      map(uuid =>{
+        sessionStorage.setItem('uuid', uuid);
+        console.log('uuid',uuid)
+      })
+    );
   }
   
 }

@@ -19,11 +19,15 @@ export class CestaComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dataSource = JSON.parse(sessionStorage.getItem('lista'));
+    this.productService.listBasket().subscribe(
+      result => this.dataSource = result
+    );
+    //JSON.parse(sessionStorage.getItem('lista'));
     this.dataSource.map(el=>{
       this.qtd += el.qtd;
       this.totalPreco += el.qtd*el.price;
     })
+   
   }
   addProduto(produto){
     this.qtd = 0;
@@ -34,7 +38,7 @@ export class CestaComponent implements OnInit {
       this.totalPreco += el.qtd*el.price;
       return el;
     })
-    sessionStorage.setItem('lista', JSON.stringify(this.dataSource))
+    //sessionStorage.setItem('lista', JSON.stringify(this.dataSource))
   }
   subProduto(produto){
     

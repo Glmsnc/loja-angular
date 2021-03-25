@@ -47,6 +47,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { IdentificacaoClienteComponent } from './pages/identificacao-cliente/identificacao-cliente.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PedidoComponent } from './pages/pedido/pedido.component';
 @NgModule({
@@ -66,6 +67,7 @@ import { PedidoComponent } from './pages/pedido/pedido.component';
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatCardModule,
+    HttpClientModule,
   MatButtonModule,
   MatCheckboxModule,
   MatFormFieldModule,
